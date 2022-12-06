@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smazouz <smazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 09:16:49 by smazouz           #+#    #+#             */
-/*   Updated: 2022/06/23 09:18:18 by smazouz          ###   ########.fr       */
+/*   Updated: 2022/12/06 04:52:28 by smazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"cub3d.h"
+#include "../cub3d.h"
+
 char	*ft_strchr(const char *s, int c)
 {
 	while (*s || c == '\0')
@@ -21,14 +22,15 @@ char	*ft_strchr(const char *s, int c)
 	}
 	return (NULL);
 }
-size_t  ft_strlen(const char *str)
-{
-    int len;
 
-    len = 0;
-    while(str[len])
-        len++;
-    return(len);
+size_t	ft_strlen(const char *str)
+{
+	int	len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
 }
 
 int	ft_atoi(const char *str)
@@ -70,7 +72,7 @@ char	*ft_strdup(const char *s1)
 	s = 0;
 	while (s1[s] != '\0')
 		s++;
-	dst = (char *)malloc((s + 1) * sizeof(*dst));
+	dst = (char *)calloc((s + 1), sizeof(*dst));
 	if (dst == 0)
 		return (NULL);
 	while (i < s)
@@ -81,6 +83,7 @@ char	*ft_strdup(const char *s1)
 	dst[i] = '\0';
 	return (dst);
 }
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char			*dst;
@@ -93,7 +96,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	i = 0;
 	j = -1;
 	len = (ft_strlen(s1)) + (ft_strlen(s2));
-	dst = (char *)malloc((len + 1) * sizeof(*dst));
+	dst = (char *)calloc((len + 1), sizeof(*dst));
 	if (dst == 0)
 		return (NULL);
 	while (s1[i] != '\0')

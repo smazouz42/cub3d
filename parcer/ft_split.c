@@ -1,4 +1,16 @@
-#include"cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smazouz <smazouz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/25 11:45:13 by moulmado          #+#    #+#             */
+/*   Updated: 2022/12/06 04:29:56 by smazouz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../cub3d.h"
 
 static size_t	ft_strlcpy(char *dst, const char *src, size_t destsize)
 {
@@ -19,6 +31,7 @@ static size_t	ft_strlcpy(char *dst, const char *src, size_t destsize)
 	dst[i] = '\0';
 	return (l);
 }
+
 static char	**free_tab(char	**tab)
 {
 	int	x;
@@ -86,14 +99,14 @@ char	**ft_split(char const *s, char c)
 	i = -1;
 	k = 0;
 	temp = (char *)s;
-	str = (char **)malloc((ft_word_count(s, c) + 1) * sizeof(char *));
+	str = (char **)calloc((ft_word_count(s, c) + 1), sizeof(char *));
 	if (!str)
 		return (NULL);
 	len2 = &k;
 	while (ft_word_count(s, c) > ++i)
 	{
 		temp = get_next_word(temp, c, len2);
-		str[i] = (char *)malloc((*len2 + 1) * sizeof(char));
+		str[i] = (char *)calloc((*len2 + 1), sizeof(char));
 		if (!str[i])
 			return (free_tab(str));
 		ft_strlcpy(str[i], temp, (*(len2) + 1));
